@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+    <title>Library</title>
+</head>
+<body>
+    <div class="header">
+        <h1>The Library</h1>
+        <button class="add-book">New Book</button>
+        <ul class="links-list">
+            <li><a href="https://github.com/Dur4nt3/library_project" rel="noopener noreferrer" target="_blank">Git</a></li>
+            <li>|</li>
+            <li><a href="https://github.com/Dur4nt3/library_project" rel="noopener noreferrer" target="_blank">Hub</a></li>
+            <li>|</li>
+            <li><a href="https://github.com/Dur4nt3/library_project" rel="noopener noreferrer" target="_blank">Link</a></li>
+        </ul>
+    </div>
+
+    <div class="modal-wrapper hide">
+        <div class="modal-content">
+            <form action="" class="modal-form">
+                <img src="./images/Close.svg" alt="Close" class="close-icon">
+                <div class="form-row">
+                    <label for="title" class="modal-label">Title: </label>
+                    <input type="text" class="modal-input" id="title" placeholder="" required>
+                </div>
+                <div class="form-row">
+                    <label for="author" class="modal-label">Author:</label>
+                    <input type="text" class="modal-input" id="author" placeholder="" required>
+                </div>
+                <div class="form-row">
+                    <label for="genre" class="modal-label">Genre:</label>
+                    <input type="text" class="modal-input" id="genre" placeholder="" required>
+                </div>
+                <div class="form-row includes-validation">
+                    <label for="length" class="modal-label">Length:</label>
+                    <input type="text" inputmode="numeric" class="modal-input" id="length" pattern="[0-9]+" placeholder="" required>
+                </div>
+                <span class="length-error hide">Invalid book length, please provide numerical value</span>
+                <span class="length-error too-long hide">You might want to check that length... (it's too long!)</span>
+                
+                <div class="form-row checkbox-row">
+                    <input type="checkbox" class="modal-checkbox" id="read-status">
+                    <label for="read-status" class="modal-label">Already Read</label>
+                </div>
+
+                <div class="form-row submit-row">
+                    <span class="required-error hide">Please enter the following: </span>
+                    <span class="valid-form hide">Book successfully added!</span>
+                    <button class="form-button">Add Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="main">
+        <h2 class="main-title">Book Collection</h2>
+        <div class="book-collection">
+        </div>
+    </div>
+
+
+    <div class="footer"><p class="footer-text">Project By
+        <a href="https://github.com/Dur4nt3" rel="noopener noreferrer" target="_blank">Dur4nt3</a>
+    </p></div>
+</body>
+</html>
