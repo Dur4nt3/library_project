@@ -1,15 +1,57 @@
-function Book(title, author, genre, length, readStatus, inLibrary, itemID) {
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.length = length;
-    this.readStatus = readStatus;
-    this.inLibrary = inLibrary;
-    this.itemID = itemID;
+class Book {
+    inLibrary = false;
+    itemID;
+
+    constructor(title, author, genre, length, readStatus, inLibrary, itemID) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.length = length;
+        this.readStatus = readStatus;
+        this.inLibrary = inLibrary;
+        this.itemID = itemID;
+    }
+
+    get inLibrary() {
+        return this._inLibrary;
+    }
+
+    set inLibrary(locationStatus) {
+        if (locationStatus != true || locationStatus != false) {
+            return;
+        }
+        else {
+            this._inLibrary = locationStatus;
+        }
+    }
+
+    get itemID() {
+        return this._itemID;
+    }
+
+    set itemID(id) {
+        if (id < 0) {
+            return;
+        }
+        else {
+            let alreadyExists = false;
+            for (i in myLibrary) {
+                if (myLibrary[i].itemID == id) {
+                    alreadyExists = true;
+                }
+            }
+            if (alreadyExists) {
+                return;
+            }
+            else {
+                this._itemID = id;
+            }
+        }
+    }
 }
 
-function createBook(title, author, genre, length, readStatus, inLibrary) {
-    let obj = new Book(title, author, genre, length, readStatus, inLibrary, itemCount);
+function createBook(title, author, genre, length, readStatus) {
+    let obj = new Book(title, author, genre, length, readStatus, false, itemCount);
     itemCount++;
     myLibrary.push(obj);
 }
@@ -126,7 +168,7 @@ function initialDisplay() {
 // Perform actions based on buttons pressed on each book
 function cardButtonPress(action, element) {
     let cardCont = element.parentElement.parentElement;
-    let bookID = cardCont.id;
+    let bookID = Number(cardCont.id);
     let bookObj = locateBook(bookID);
     let buttonCont = element.parentElement;
     let readItem = cardCont.querySelector(".book-details").lastChild.lastChild;
@@ -148,7 +190,7 @@ function cardButtonPress(action, element) {
         readItem.textContent = "Didn't Read";
     }
     else if (action == "remove-book") {
-        myLibrary.splice(bookObj, 1);
+        myLibrary.splice(myLibrary.findIndex(obj => obj.itemID === bookID), 1);
         cardCont.remove();
     }
 }
@@ -259,9 +301,9 @@ let formCont = document.querySelector(".modal-form");
 // Prevent overriding removed book's ID by creating a global ID variable
 let itemCount = 0;
 
-createBook("The Divine Comedy", "Dante Alighieri", "Narrative Poem", 928, false, false);
-createBook("Frankenstein", "Mary W. Shelley", "Gothic Novel", 192, false, false);
-createBook("Slaughterhouse-Five", "Kurt Vonnegut", "Dark Comedy", 288, false, false);
+createBook("The Divine Comedy", "Dante Alighieri", "Narrative Poem", 928, false);
+createBook("Frankenstein", "Mary W. Shelley", "Gothic Novel", 192, false);
+createBook("Slaughterhouse-Five", "Kurt Vonnegut", "Dark Comedy", 288, false);
 
 initialDisplay();
 
