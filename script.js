@@ -1,6 +1,4 @@
 class Book {
-    inLibrary = false;
-    itemID;
 
     constructor(title, author, genre, length, readStatus, inLibrary, itemID) {
         this.title = title;
@@ -8,8 +6,8 @@ class Book {
         this.genre = genre;
         this.length = length;
         this.readStatus = readStatus;
-        this.inLibrary = inLibrary;
-        this.itemID = itemID;
+        this._inLibrary = inLibrary;
+        this._itemID = itemID;
     }
 
     get inLibrary() {
@@ -17,7 +15,7 @@ class Book {
     }
 
     set inLibrary(locationStatus) {
-        if (locationStatus != true || locationStatus != false) {
+        if (locationStatus != true && locationStatus != false) {
             return;
         }
         else {
@@ -35,6 +33,7 @@ class Book {
         }
         else {
             let alreadyExists = false;
+            let i;
             for (i in myLibrary) {
                 if (myLibrary[i].itemID == id) {
                     alreadyExists = true;
@@ -101,7 +100,7 @@ function buildList(obj, parentElement) {
     parentElement.appendChild(bookDetails);
 
     for (key in obj) {
-        if(key != "inLibrary" && key != "itemID") {
+        if(key != "inLibrary" && key != "itemID" && key != "_itemID" && key != "_inLibrary") {
             buildItem(key, obj[key], bookDetails);
         }
     }
