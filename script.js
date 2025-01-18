@@ -1,4 +1,6 @@
 class Book {
+    #inLibrary;
+    #itemID;
 
     constructor(title, author, genre, length, readStatus, inLibrary, itemID) {
         this.title = title;
@@ -6,12 +8,12 @@ class Book {
         this.genre = genre;
         this.length = length;
         this.readStatus = readStatus;
-        this._inLibrary = inLibrary;
-        this._itemID = itemID;
+        this.#inLibrary = inLibrary;
+        this.#itemID = itemID;
     }
 
     get inLibrary() {
-        return this._inLibrary;
+        return this.#inLibrary;
     }
 
     set inLibrary(locationStatus) {
@@ -19,12 +21,12 @@ class Book {
             return;
         }
         else {
-            this._inLibrary = locationStatus;
+            this.#inLibrary = locationStatus;
         }
     }
 
     get itemID() {
-        return this._itemID;
+        return this.#itemID;
     }
 
     set itemID(id) {
@@ -43,7 +45,7 @@ class Book {
                 return;
             }
             else {
-                this._itemID = id;
+                this.#itemID = id;
             }
         }
     }
